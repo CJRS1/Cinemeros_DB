@@ -14,6 +14,8 @@ from pathlib import Path
 from os import environ
 from dotenv import load_dotenv
 from datetime import timedelta
+import os
+import dotenv
 
 load_dotenv()
 
@@ -33,7 +35,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
+
+SECRET_KEY = os.environ['SECRET_KEY'] 
 # Application definition
 
 INSTALLED_APPS = [
